@@ -5,6 +5,7 @@
 ## About
 
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+This project is basically on implementing different types of social login by using the nodeJS (feathers JS) as the backend and SQL as the server.
 
 ## Getting Started
 
