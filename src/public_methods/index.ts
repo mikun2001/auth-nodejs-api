@@ -25,7 +25,7 @@ import {
 import assert from "assert";
 import { AuthSessionDeviceType } from "../db_services/v1/auth-session/intefaces/AuthSessionInterface";
 import { BadRequest, FeathersError } from "@feathersjs/errors";
-import { Application } from "../../declarations";
+import { Application } from "../declarations";
 import { getAllSessionsData } from "./utils/getAllSessionsData";
 import {
   CreateCredentialPostDataInterface,
