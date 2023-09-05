@@ -1,0 +1,28 @@
+// Initializes the `../auth/services/v1/delete-credential` service on path `/v1/delete-credential`
+import { ServiceAddons } from '@feathersjs/feathers';
+import { Application } from '../../../../declarations';
+import { DeleteCredential } from './delete-credential.class';
+import hooks from './delete-credential.hooks';
+import OnCredentialDeleteEndPreviousSessions from './events/OnCredentialDeleteEndPreviousSessions';
+
+// Add this service to the service type index
+declare module '../../../../declarations' {
+    interface ServiceTypes {
+        'v1/delete-credential': DeleteCredential & ServiceAddons<any>;
+    }
+}
+
+export default function (app: Application): void {
+    const options = {
+        paginate: app.get('paginate'),
+    };
+
+    // Initialize our service with any options it requires
+    app.use('/v1/delete-credential', new DeleteCredential(options, app));
+
+    // Get our initialized service so that we can register hooks
+    const service = app.service('v1/delete-credential');
+
+    service.hooks(hooks);
+    service.on('created', OnCredentialDeleteEndPreviousSessions);
+}

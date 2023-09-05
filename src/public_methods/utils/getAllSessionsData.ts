@@ -11,7 +11,7 @@ import {
 } from "../../db_services/v1/auth-session/intefaces/AuthSessionInterface";
 import { authSessionPath } from "../../service_endpoints/services";
 import { BadRequest, FeathersError } from "@feathersjs/errors";
-import { Application } from "../../declarations";
+import { Application } from "../../../declarations";
 import { GetAllSessionInterface } from "../interfaces/PublicMethodInterfaces";
 import { AuthHelper } from "../../utils/AuthHelper/AuthHelper";
 import { Knex } from "knex";

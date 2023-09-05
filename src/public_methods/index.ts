@@ -25,7 +25,7 @@ import {
 import assert from "assert";
 import { AuthSessionDeviceType } from "../db_services/v1/auth-session/intefaces/AuthSessionInterface";
 import { BadRequest, FeathersError } from "@feathersjs/errors";
-import { Application } from "../declarations";
+import { Application } from "../../declarations";
 import { getAllSessionsData } from "./utils/getAllSessionsData";
 import {
   CreateCredentialPostDataInterface,
@@ -115,15 +115,25 @@ export class AuthService {
       });
   }
   static async loginWithShopify(
-    code: string,
     entity: string,
     storeName: string,
-    sessionConfig: SessionConfigInterface
+    sessionConfig: SessionConfigInterface,
+    code?: string,
+    accessToken?: string
   ): Promise<ShopifyLoginResult> {
     const { deviceType, deviceId, fcmId, ip } = sessionConfig;
     const result = await AuthService.app
       .service(authenticateShopifyPath)
-      .create({ code, storeName, entity, deviceType, deviceId, fcmId, ip })
+      .create({
+        accessToken,
+        code,
+        storeName,
+        entity,
+        deviceType,
+        deviceId,
+        fcmId,
+        ip,
+      })
       .catch((err: FeathersError) => {
         throw new BadRequest(err);
       });
